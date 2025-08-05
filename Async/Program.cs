@@ -1,15 +1,13 @@
-var numberOfTasks = 10000;
+var numberOfTasks = 1000;
 
-var tasks = new List<Task<bool>>(numberOfTasks);
+var results = new List<bool>(numberOfTasks);
 
 for(var i = 0; i < numberOfTasks; i++)
 {
-    tasks.Add(SomeAsyncFunction());
+    results.Add(await SomeAsyncFunction());
 }
 
-await Task.WhenAll(tasks);
-
-var rate = tasks.Select(x => x.Result).Sum(x => x ? 1 : 0) * 100 / numberOfTasks;
+var rate = results.Sum(x => x ? 1 : 0) * 100 / numberOfTasks;
 
 Console.WriteLine(rate);
 
