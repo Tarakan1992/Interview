@@ -11,7 +11,7 @@ internal interface IUserRepository
     Task<IEnumerable<User>> GetUsersByGroup(IEnumerable<int> groupIds);
 }
 
-internal sealed class UserRepository(IDbContextFactory<AppDbContext> dbContextFactory, MemoryCache memoryCache) : IUserRepository
+internal sealed class UserRepository(IDbContextFactory<AppDbContext> dbContextFactory, IMemoryCache memoryCache) : IUserRepository
 {
     public Task<IEnumerable<User>> GetAllUsers()
     {
